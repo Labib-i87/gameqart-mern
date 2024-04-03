@@ -1,7 +1,31 @@
 const HttpError = require("../models/http-error");
 const Product = require("../models/product");
 
-const getProductById = (req, res, next) => {};
+const getProductById = async (req, res, next) => {
+  const productId = req.params.pid;
+
+  let product;
+
+  try {
+    product = await Product.findById(productId);
+  } catch (err) {
+    const error = new HttpError(
+      "Something went wrong. Could not find a product.",
+      500
+    );
+    return next(error);
+  }
+
+  if (!product) {
+    const error = new HttpError(
+      "Could not find a product with provided ID.",
+      404
+    );
+    return next(error);
+  }
+
+  res.json({ product: product });
+};
 
 const createProduct = async (req, res, next) => {
   const createdProduct = new Product(req.body);

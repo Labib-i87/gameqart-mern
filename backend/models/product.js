@@ -11,9 +11,10 @@ const productSchema = new Schema({
     required: true,
     enum: ["playstation", "xbox", "pc", "nintendo"],
   },
-  category: { type: String, required: true },
+  region: { type: String, required: true },
   type: { type: String, required: true, enum: ["game", "card"] },
   price: { type: Schema.Types.Mixed, required: true },
+  stock: { type: Schema.Types.Mixed, required: true },
 });
 
 module.exports = mongoose.model("Product", productSchema);
