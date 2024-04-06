@@ -9,7 +9,7 @@ const productSchema = new Schema({
   platform: {
     type: String,
     required: true,
-    enum: ["playstation", "xbox", "pc", "nintendo"],
+    enum: ["playstation", "xbox", "pc", "nintendo", "EA", "global"],
   },
   region: { type: String, required: true },
   type: { type: String, required: true, enum: ["game", "card"] },
